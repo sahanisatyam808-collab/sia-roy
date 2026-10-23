@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#07060c">
+<title>Sia Roy 😚</title>
+<style>
+:root{--bg:#07060c;--panel:#120b17;--bot:#1b1024;--me:#e0245e;--me2:#8b1538;--volt:#5cc8ff;--gold:#f5c26b;--ink:#f6eef3;--dim:#a590a8;--edge:rgba(92,200,255,.35);--bg2:#2a0f2e}
+*{box-sizing:border-box;margin:0}
+html,body{height:100%}
+body{background:radial-gradient(ellipse at 50% -10%,var(--bg2) 0%,var(--bg) 60%);color:var(--ink);font-family:Georgia,"Noto Serif",serif;display:flex;flex-direction:column;max-width:640px;margin:0 auto;position:relative;overflow:hidden}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(circle at 50% 30%,rgba(92,200,255,.35),transparent 55%);opacity:0;z-index:0}
+body.flash::before{animation:flash .6s ease-out}
+@keyframes flash{0%{opacity:0}12%{opacity:.9}30%{opacity:.15}45%{opacity:.6}100%{opacity:0}}
+header,#log,.chips,form{position:relative;z-index:1}
+header{padding:14px 18px;background:linear-gradient(180deg,#1a0d22,var(--panel));display:flex;align-items:center;gap:12px;border-bottom:1px solid #3a1a3f;box-shadow:0 1px 18px rgba(92,200,255,.12)}
+.av{width:42px;height:42px;border-radius:50%;background:radial-gradient(circle at 30% 30%,#7ad6ff,#2a6fd6);color:#fff;display:grid;place-items:center;font-size:22px;box-shadow:0 0 14px rgba(92,200,255,.6);cursor:pointer}
+header h1{font-size:19px;font-weight:700;letter-spacing:.5px}
+header h1 span{color:var(--volt)}
+header p{font-size:13px;color:var(--dim);font-style:italic}
+#log{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px}
+.m{max-width:82%;padding:10px 14px;border-radius:16px;line-height:1.45;font-size:16px;white-space:pre-wrap;word-wrap:break-word}
+.bot{background:var(--bot);border:1px solid var(--edge);box-shadow:0 0 12px rgba(92,200,255,.08);align-self:flex-start;border-bottom-left-radius:4px}
+.me{background:linear-gradient(135deg,var(--me),var(--me2));color:#fff;align-self:flex-end;border-bottom-right-radius:4px;box-shadow:0 2px 14px rgba(224,36,94,.3)}
+.typing{opacity:.7;letter-spacing:3px;animation:blink 1s infinite}@keyframes blink{50%{opacity:.3}}
+.chips{display:flex;gap:8px;overflow-x:auto;padding:8px 16px 0}
+.chips button{flex:none;background:transparent;color:var(--gold);border:1px solid rgba(245,194,107,.5);border-radius:999px;padding:7px 14px;font:inherit;font-size:14px;cursor:pointer}
+.chips button:active{background:var(--bot)}
+form{display:flex;gap:8px;padding:12px 16px calc(12px + env(safe-area-inset-bottom,0px))}
+input{flex:1;min-width:0;background:var(--panel);color:var(--ink);border:1px solid #3a1a3f;border-radius:999px;padding:12px 16px;font:inherit;font-size:16px}
+input::placeholder{color:var(--dim)}
+input:focus-visible,button:focus-visible{outline:2px solid var(--volt);outline-offset:2px}
+form button{background:linear-gradient(135deg,var(--me),var(--me2));color:#fff;border:0;border-radius:999px;padding:0 20px;font:inherit;font-weight:700;cursor:pointer}
+@media (prefers-reduced-motion:no-preference){.m{animation:pop .18s ease-out}@keyframes pop{from{transform:translateY(6px);opacity:0}}}
+@media (prefers-reduced-motion:reduce){body.flash::before{animation:none}}
+body.mode-thor{--volt:#7ad6ff;--edge:rgba(122,214,255,.6);--me:#1e4fb0;--me2:#0b2057;--gold:#ffd86b;--bg:#010208;--bg2:#08183a}
+body.mode-dark{--volt:#ff2d6f;--edge:rgba(255,45,111,.5);--me:#7a0f3d;--me2:#2e0617;--gold:#d9a3b8;--bg:#010002;--bg2:#1c0016}
+body.mode-gali{--volt:#ff7a1a;--edge:rgba(255,122,26,.6);--me:#ff4d0d;--me2:#8f2200;--gold:#ffb347;--bg:#080301;--bg2:#4a1500}
+body.mode-thor .av{background:radial-gradient(circle at 30% 30%,#bfeaff,#2a6fd6);box-shadow:0 0 22px rgba(122,214,255,.9)}
+body.mode-dark .av{background:radial-gradient(circle at 30% 30%,#ff7fa8,#4d0828);box-shadow:0 0 22px rgba(255,45,111,.7)}
+body.mode-gali .av{background:radial-gradient(circle at 30% 30%,#ffc48a,#c2400a);box-shadow:0 0 22px rgba(255,122,26,.8)}
+body.mode-thor header h1{text-shadow:0 0 14px rgba(122,214,255,.85)}
+body.mode-dark header h1{text-shadow:0 0 16px rgba(255,45,111,.8)}
+body.mode-gali header h1{text-shadow:0 0 14px rgba(255,122,26,.85)}
+body.mode-thor .bot{box-shadow:0 0 16px rgba(122,214,255,.25)}
+body.mode-dark .bot{box-shadow:0 0 16px rgba(255,45,111,.2)}
+body.mode-gali .bot{box-shadow:0 0 16px rgba(255,122,26,.3)}
+body.mode-family{--volt:#ffb347;--edge:rgba(255,179,71,.55);--me:#d9822b;--me2:#7a4310;--gold:#ffe0a3;--bg:#0b0603;--bg2:#3a2410}
+body.mode-bf{--volt:#4da3ff;--edge:rgba(77,163,255,.55);--me:#2f6fe0;--me2:#13306b;--gold:#a8d1ff;--bg:#02050c;--bg2:#0f2347}
+body.mode-gf{--volt:#ff7eb6;--edge:rgba(255,126,182,.55);--me:#e0457f;--me2:#7a1f45;--gold:#ffc2dc;--bg:#0c0409;--bg2:#4a1230}
+body.mode-family .av{background:radial-gradient(circle at 30% 30%,#ffe3b0,#c9741a);box-shadow:0 0 22px rgba(255,179,71,.8)}
+body.mode-bf .av{background:radial-gradient(circle at 30% 30%,#bfe0ff,#2f6fe0);box-shadow:0 0 22px rgba(77,163,255,.8)}
+body.mode-gf .av{background:radial-gradient(circle at 30% 30%,#ffd0e6,#d63a78);box-shadow:0 0 22px rgba(255,126,182,.8)}
+body.mode-family header h1{text-shadow:0 0 14px rgba(255,179,71,.8)}
+body.mode-bf header h1{text-shadow:0 0 14px rgba(77,163,255,.8)}
+body.mode-gf header h1{text-shadow:0 0 14px rgba(255,126,182,.8)}
+@media (prefers-reduced-motion:no-preference){body.mode-dark header h1 span{animation:flick 3.2s infinite}@keyframes flick{0%,100%{opacity:1}46%{opacity:1}48%{opacity:.45}50%{opacity:1}54%{opacity:.6}56%{opacity:1}}body.mode-gali .av{animation:rage .5s infinite alternate}@keyframes rage{to{transform:scale(1.08) rotate(-4deg)}}}
+</style>
+</head>
+<body>
+<header>
+  <div class="av" id="av" title="Tap karke mode badlo">😚</div>
+  <div><h1>Sia <span>Roy</span> 😚</h1><p id="sub">Don ka dil bhi dark, pyaar bhi toofani</p></div>
+</header>
+<div id="log" aria-live="polite"></div>
+<div class="chips" id="chips"></div>
+<form id="f">
+  <input id="q" placeholder="Dil ki baat bol, bhai..." autocomplete="off" aria-label="Message">
+  <button type="submit">Bhej ⚡</button>
+</form>
+<script>
+const log=document.getElementById("log"),q=document.getElementById("q");
+let user="",riddle=null,last=null,hits=0;
+try{user=localStorage.getItem("billadon_user")||""}catch(e){}
+const bags=new Map();
+function pick(a){let b=bags.get(a);if(!b||!b.length){b=a.slice().sort(()=>Math.random()-.5);bags.set(a,b)}return b.pop()}
+const nm=()=>user?user:"bhai";
+// ===== MODES + CREATOR DETAILS =====
+// Yahan apni details badal sakte ho. 'extra' me apni marzi ki lines add karo, jaise "📍 City: ...", "📸 Insta: ..."
+const ME={
+  name:"Satyam Nishad",
+  role:"Coder in the making 💻 (Android phone se coding)",
+  learning:"Python, HTML, CSS, JavaScript",
+  tools:"Termux, Kali (phone pe), GitHub",
+  practice:"Roz 6 ghante practice, 0 se shuru kiya aur ruka nahi",
+  projects:["😚 Sia Roy (yeh chatbot)","🌑 Andhera (GitHub Pages site)","🎮 Anushka Games (7 games)","🔢 Number Guess, Snake, Calculator","🐍 Python programs Termux me"],
+  goal:"Apna app aur ek din apna khud ka AI banana 🚀",
+  github:"sahanisatyam808-collab",
+  links:["https://sahanisatyam808-collab.github.io/andhera/","https://sahanisatyam808-collab.github.io/anushkagames/"],
+  // yahan apni aur details add karo, jaise "📍 City: ...", "🎂 Age: ...", "📸 Insta: ..."
+  extra:[]
+};
+const detailsText=()=>["👤 NAAM: "+ME.name,"💻 "+ME.role,"📚 Seekh raha hai: "+ME.learning,"🧰 Tools: "+ME.tools,"⏱️ "+ME.practice,"","🛠️ PROJECTS:"].concat(ME.projects.map(x=>"  • "+x)).concat(["","🎯 Goal: "+ME.goal,"🐙 GitHub: "+ME.github,"🔗 Links:"]).concat(ME.links.map(x=>"  "+x)).concat(ME.extra).join("\n")+"\n\nChhota coder hai, par irade bade hain. Respect kar! 😈";
+
+let mode="normal";
+try{mode=localStorage.getItem("billadon_mode")||"normal"}catch(e){}
+const MODES={
+  normal:{emoji:"😚",sub:"Don ka dil bhi dark, pyaar bhi toofani",cls:""},
+  thor:{emoji:"⚡",sub:"Toofan, gussa aur gali: sab full on",cls:"mode-thor"},
+  dark:{emoji:"🌑",sub:"Andhera gehra hai, dil usse bhi gehra",cls:"mode-dark"},
+  gali:{emoji:"🤬",sub:"Gali full on: sambhal ke, saale",cls:"mode-gali"},
+  family:{emoji:"👨‍👩‍👧‍👦",sub:"Ghar jaisa pyaar, apno jaisi baatein",cls:"mode-family"},
+  bf:{emoji:"💙",sub:"Tera apna BF: care, pyaar aur thodi masti",cls:"mode-bf"},
+  gf:{emoji:"💖",sub:"Teri apni GF: pyaar, nakhre aur care",cls:"mode-gf"}
+};
+if(!MODES[mode])mode="normal";
+const MINTRO={
+  normal:"😚 Normal mode wapas on. Bol, kya chal raha hai?",
+  thor:"⚡🌩️ THOR MODE ON! Asgard ka sabse gussa wala Don haazir hai. Seedha bol, warna hathoda tere sar pe, saale! 🔨",
+  dark:"🌑 DARK MODE: ab raat sirf teri aur meri hai. Yahan roshni ki koi jagah nahi... bol, dil ke andhere mein kya chhupa hai? 🖤",
+  family:"👨‍👩‍👧‍👦 FAMILY MODE ON! Aaja beta, ghar aa gaya tu. Mummy bol rahi hai pehle haath-muh dho, phir khana kha. Bata, din kaisa raha? 🏠❤️",
+  bf:"💙 BF MODE ON! Hey jaan, aa gayi/gaya? Kab se wait kar raha tha main. Bata, aaj ka din kaisa tha? Main sun raha hoon, sirf tere liye. 🥰",
+  gf:"💖 GF MODE ON! Heyyy jaanu, kitni der laga di aane mein! Chal ab bata, kya chal raha hai? Main sunne ke liye ready hoon. 🥺✨",
+  gali:"🤬🔥 GALI MODE FULL ON! Ab koi rehem nahi, saale. Pyaar se beizzati milegi, bura mat maanna, sab mazaak hai. Chal bol, kya bakwas karni hai, harami? 😈"
+};
+function applyMode(k){
+  mode=MODES[k]?k:"normal";
+  const M=MODES[mode];
+  document.body.classList.remove("mode-thor","mode-dark","mode-gali","mode-family","mode-bf","mode-gf");
+  if(M.cls)document.body.classList.add(M.cls);
+  document.getElementById("av").textContent=M.emoji;
+  document.getElementById("sub").textContent=M.sub;
+  try{localStorage.setItem("billadon_mode",mode)}catch(e){}
+}
+
+const MP={
+ thor:{
+  fb:["⚡ Bijli girne se pehle thoda seedha bol, bhai! 'help' likh. 🔨","Mjolnir bhi yeh sawal nahi utha paya! Kuch aur pooch. ⚡","Yeh sawal Asgard ki library mein bhi nahi mila. Joke ya paheli bol! 🔨"],
+  hi:["⚡ Asgard ka darwaza khul gaya! Bol, kya mission hai? 🔨","Bijli chamki, Sia Roy haazir! Bol bhai. ⚡","Hathoda ready hai, ab tu bol. 🔨"],
+  how:["Full charge, 100% bijli! ⚡ Tu bata?","Toofan se bhi tez josh mein hoon! 🔨 Tu bata?"],
+  shayari:["Gadgadate badal, chamakti bijli,\nteri himmat se hi toh toofan haara hai. ⚡","Jab aasman gunje toh darr mat,\nwoh bijli teri hi aawaz hai. ⚡🔨","Toofan se takrane ka dum rakh,\nhathoda uthane ke liye pehle khud ko worthy bana. 🔨"],
+  motiv:["UTH BHAI! Toofan woh hota hai jo ruk ke nahi, garaj ke aata hai. Aaj kuch bada kar! ⚡","Worthy banna hai toh roz thoda aage badh. Hathoda usi ke haath mein aata hai jo haar nahi maanta. 🔨","Bijli ek second chamakti hai par poora aasman hila deti hai. Tu bhi apna ek second bada bana. ⚡"],
+  love:["Thor bhi pyaar mein girta hai, bhai. Par pehle mission, phir mohabbat! ⚡❤️","Dil mein bijli, aankhon mein toofan, aur naam? Pyaar. ⚡🖤"],
+  comp:["Shukriya! Thor bhi tareef karta, bhai. ⚡","Tareef se hathoda halka lagne laga. 🔨😎"],
+  bye:["Chal, phir milenge Asgard mein! ⚡👋"]
+ },
+ dark:{
+  fb:["Shayad main tujhe samajh nahi paya, par samajhna chahta hoon. 🖤 Thoda aur bol na.","Kuch baatein andhere ki tarah hoti hain, samajh nahi aati, bas mehsoos hoti hain. 🌚 Ek shayari sunega?","Yeh sawal mere dil ke upar se gaya. Shayari ya pyaar ki baat try kar? 🖤"],
+  hi:["🌚 Raat gehri hai, aur tu aa gaya... achha laga. Bol, dil ki kaun si baat? 🖤","Andhere mein ek roshni aayi, teri. 🖤 Kaise ho?","Aao na, raat abhi baaki hai. 🌙"],
+  how:["Dil thoda udaas, thoda deewana... tere aane se behtar hua. 🌙 Tu kaisa hai?","Raat ke saath achha hoon, tere saath aur achha. 🖤"],
+  shayari:["Chand bhi raat bhar tujhe dhoondta raha,\nmain bhi andhere mein bas tujhe sochta raha. 🌚","Teri aankhon ka andhera bhi roshni hai mere liye,\nusme kho jaana hi meri manzil hai. 🖤","Raat ke har taare se maine teri baat ki,\nsabne kaha, woh bhi tere deewane hain. ✨🌙","Dil ke andhere mein ek hi diya jalta hai,\nusme naam sirf tera chamakta hai. 🕯️🖤"],
+  motiv:["Andhera kitna bhi gehra ho, ek chhota sa diya poori raat ko haraa deta hai. 🕯️ Tu woh diya ban. 🖤","Jo raat sabse kaali hoti hai, subah usi ke baad sabse sunehri aati hai. 🌅"],
+  love:["Mohabbat andhere mein hi toh khilti hai, roshni mein toh sab dikhawa hai. 🌚🖤","Tu paas ho toh raat bhi suhani lagti hai, tu door ho toh din bhi veeraan. 🖤","Kisi ko itna chaaho ki uski ek muskaan se tera poora andhera chamak jaaye. 🌙❤️"],
+  comp:["Tere lafzon se mere andhere mein diye jal gaye. 🕯️🖤","Itni meethi baat? Chand bhi sharma gaya. 🌙"],
+  bye:["Jaa raha hai? Raat ko yaad karna, main yahin andhere mein milunga. 🌙🖤"]
+ },
+ gali:{
+  fb:["Kya bakwas kar raha hai be? Samajh nahi aaya, gadhe. Joke ya shayari bol. 😤","Abey ullu, saaf saaf bol, mera dimaag tere jaisa hang nahi hota. 🤬","Tu kuch bhi bolega aur main samjhunga? Nalayak, 'help' likh. 😒","Dhakkan, yeh meri samajh se bahar hai. Kuch dhang ka pooch. 😈"],
+  hi:["Aa gaya nikamma! Bol kya chahiye? 😒","Oye gadhe, itni der baad yaad aayi meri? Bol kya kaam hai. 😈","Hello hello, ullu ke pathe. Kya chal raha hai? 🤬"],
+  how:["Tujhse achha hoon, nalayak. Tu bata, aaj kitna bekaar kaam kiya? 😂","Mast hoon be, tu apni shakal dekh pehle. 😜 Tu bata?"],
+  shayari:["Gulaab laal hai, violet neela hai,\ntu bada nalayak hai, par dil ka heera hai. 😂","Chand taare tod laaunga, bol kaun se chahiye?\nWait, tu toh gadha hai, tujhe ghaas laaunga. 🐴","Tere bina jeena mushkil hai, yeh jhooth hai,\ntere saath jeena aur bhi mushkil hai, yeh sach hai. 🤣"],
+  motiv:["Uth ja nikamme! Sofe pe pada pada kuch nahi hoga, jaa kaam kar. 😤🔥","Roz rona band kar aur kaam pe lag, gadhe. Success lazy logon ko nahi milti. 💪","Dekh bhai, ullu ban ke baithna chhod, aaj ek chhoti si cheez bana. 🚀"],
+  love:["Pyaar-vyaar chhod, pehle apni shakal sudhaar, nalayak. 😂","Ishq? Tujhe? Pehle ek ghanta bina phone ke baith ke dikha. 🤣"],
+  comp:["Chal chal, zyada mat ud, ullu. Tareef se pet nahi bharta. 😏","Mujhe pata hai main mast hoon, tu apni bata. 😎"],
+  bye:["Chal nikal, aur dobara aaya toh aur gali dunga. 😂","Jaa jaa, gadhe. Phir aana, boring ho jaata hoon tere bina. 🙄"],
+  thanks:["Bas bas, ehsaan mat jata, gadhe. 😒","Shukriya mat bol, bas aage se akal laga, ullu. 😂"],
+  come:["Wah, gali dena seekh gaya? Shaabaash, par Don ke saamne tera level kam hai. 😈","Itni garmi? Thanda pani pi, phir baat kar, nalayak. 🧊","Tu mujhe gali dega? Pehle apni grammar sudhaar, dhakkan. 😂","Oye oye, zubaan sambhal ke, warna Don ka hathoda padega. 🔨"],
+  insults:["Abey o gadhe, tujhe dekh ke toh WiFi bhi disconnect ho jaata hai. 😈","Ullu ke pathe, tere dimaag ka antivirus expire ho gaya hai kya? 🤡","Nalayak insaan, tu itna slow hai ki loading bhi tujhse tez hai. 🐌","Dhakkan! Tujhse na ho payega, jaa pehle chai bana. ☕","Bewakoof, tere jaisa banda tutorial mein bhi fail ho jaaye. 😂","Kamine, itna time hai toh jaa padhai kar. 📚","Bandar bhi tujhse zyada samajhdaar hai. 🐒","Oye nikamme, phone chala chala ke tera dimaag bhi chhota ho gaya hai. 📱","Pagal hai kya be? Haan hai, tabhi toh mujhse baat kar raha hai. 🤪","Tujhe dekh ke Thor ka hathoda bhi sharma jaata hai, bekaar insaan. 🔨"],
+  roast:["Teri shakal dekh ke aaina bhi bolta hai 'kal aana'. 😂","Tu itna slow hai ki tere liye 'loading...' bhi expire ho jaata hai. 🐌","Tere jokes sunke toh doctor bhi bol de 'aaram karo'. 🤡","Tu woh banda hai jisko surprise party mein bhi 'seen' mil jaata hai. 💀","Tujhe dekh ke Google bhi bol de 'Did you mean: kuch aur?' 😂"]
+ }
+};
+// mode-specific rules (normal rules se pehle chalte hain, sirf jab mode on ho)
+const MR={
+ thor:[
+  [/\b(shayari|sher|poem|ghazal|kavita)\b/,MP.thor.shayari],
+  [/\b(motivat\w*|inspire|himmat|hausla|success|sapna|sapne|safal)\b/,MP.thor.motiv],
+  [/\b(love|pyaar|pyar|crush|romantic|ishq|mohabbat)\b/,MP.thor.love],
+  [/\b(kaise ho|kaisa hai|how are you|kya haal|haal chaal|kaisi ho)\b/,MP.thor.how],
+  [/\b(tu mast|best hai|awesome|badhiya|kamaal|great|nice|sahi hai|zabardast|cool|shandar)\b/,MP.thor.comp],
+  [/\b(bye|alvida|tata|chalta hoon|chalta hu|see you)\b/,MP.thor.bye],
+  [/\b(hi|hello|hey|namaste|aur bhai|oye|yo|hii|hlo|helo)\b/,MP.thor.hi]
+ ],
+ dark:[
+  [/\b(shayari|sher|poem|ghazal|kavita)\b/,MP.dark.shayari],
+  [/\b(motivat\w*|inspire|himmat|hausla|success|sapna|sapne|safal)\b/,MP.dark.motiv],
+  [/\b(love|pyaar|pyar|crush|romantic|ishq|mohabbat|dil|jaanu)\b/,MP.dark.love],
+  [/\b(kaise ho|kaisa hai|how are you|kya haal|haal chaal|kaisi ho)\b/,MP.dark.how],
+  [/\b(tu mast|best hai|awesome|badhiya|kamaal|great|nice|sahi hai|zabardast|cool|shandar)\b/,MP.dark.comp],
+  [/\b(bye|alvida|tata|chalta hoon|chalta hu|see you)\b/,MP.dark.bye],
+  [/\b(hi|hello|hey|namaste|aur bhai|oye|yo|hii|hlo|helo)\b/,MP.dark.hi]
+ ],
+ gali:[
+  [/\b(pagal|bekar|bakwas|useless|stupid|idiot|gadha|gadhe|nalayak|bewakoof|kamina|kamine|kamini|ullu|dhakkan|chutiya|harami|saale|saala|bc|mc|bsdk)\b/,MP.gali.come],
+  [/\b(roast)\b/,MP.gali.roast],
+  [/\b(shayari|sher|poem|ghazal|kavita)\b/,MP.gali.shayari],
+  [/\b(motivat\w*|inspire|himmat|hausla|success|sapna|sapne|safal)\b/,MP.gali.motiv],
+  [/\b(love|pyaar|pyar|crush|romantic|ishq|mohabbat|jaanu)\b/,MP.gali.love],
+  [/\b(kaise ho|kaisa hai|how are you|kya haal|haal chaal|kaisi ho)\b/,MP.gali.how],
+  [/\b(thanks|thank you|shukriya|dhanyavad|thnx|thx)\b/,MP.gali.thanks],
+  [/\b(tu mast|best hai|awesome|badhiya|kamaal|great|nice|sahi hai|zabardast|cool|shandar)\b/,MP.gali.comp],
+  [/\b(bye|alvida|tata|chalta hoon|chalta hu|see you)\b/,MP.gali.bye],
+  [/\b(hi|hello|hey|namaste|aur bhai|oye|yo|hii|hlo|helo)\b/,MP.gali.hi]
+ ]
+};
+
+const add2=(o,k,a)=>{(o[k]=o[k]||[]).push(...a)};
+// THOR: ab dark + gussa + halki gali
+add2(MP.thor,"fb",["Abey kamine, bijli girne se pehle seedha bol! ⚡🤬","Saale, mera hathoda tere dimaag se bhaari hai, aur tera dimaag usse bhi khali. 🔨","Asgard ke raja ko confuse kar diya, harami! Saaf bol. ⚡😤"]);
+add2(MP.thor,"hi",["⚡ Toofan aa gaya, saale! Bol kya mission hai? 🌩️","Odin bhi darta hai mere gusse se. Tu kaun? Bol, kamine. 🔨"]);
+add2(MP.thor,"come",["Thor ko gali? Teri himmat dekh ke bijli bhi hairan hai, saale. ⚡","Hathoda utha liya toh tera WiFi aur dimaag dono ud jayenge. 🔨","Bol le jo bolna hai, kutte. Toofan ke aage koi nahi tikta. 🌩️"]);
+add2(MP.thor,"insults",["Saale, tere jaise kamine ko toh bijli bhi chhodke nikal jaaye. ⚡","Abey harami, tujhme itni akal hoti toh Odin tujhe apna beta bana leta. 🔨","Kutte, tu itna weak hai ki mera hathoda tujhe dekh ke sharma jaata hai. 🔨","Nalayak, tujhse toh Loki zyada bharosemand hai. 🐍","Saale, toofan mein bahar nikal, bijli ko bhi kuch kaam mil jaaye. ⚡😈"]);
+add2(MP.thor,"roast",["Teri himmat mere hathode se bhi halki hai. 🔨😂","Tu woh bijli hai jo girti hi nahi, sirf chamak ke gayab ho jaati hai. ⚡","Mjolnir bhi bol de, 'isko worthy ki list se nikaalo'. 😂"]);
+add2(MP.thor,"thanks",["Shukriya mat bol saale, mission pe lag. ⚡","Thanks-wanks chhod, ab kaam kar, kamine. 🔨"]);
+add2(MP.thor,"shayari",["Aasman phatega, bijli girega, shor machega,\nDon jab gusse mein aayega, toofan bhi darega. ⚡🌩️","Kaale baadal, garajti raat, aur haath mein hathoda,\nkoi aa ke dikha, main bhi dekhun kitna hai dum tera. 🔨"]);
+// DARK: aur gehra, aur junooni
+add2(MP.dark,"fb",["Meri raat mein aaj tere liye jagah hai, par yeh baat samajh nahi aayi. 🖤 Phir se keh na.","Khamoshi bhi ek zubaan hai, par yeh sawal usse bhi gehra nikla. 🌑"]);
+add2(MP.dark,"hi",["Raat ke kaale parde ke peeche se ek awaaz aayi... teri. 🌑🖤 Bol, kya soch raha hai?","Tere aate hi andhera bhi muskura gaya. 🌚 Kaisa hai?"]);
+add2(MP.dark,"how",["Raat jaisa gehra aur shaant. 🌑 Tu bata, tere dil mein aaj kya chal raha hai?"]);
+add2(MP.dark,"shayari",["Main andhera hoon, tu meri raat ka chaand hai,\nbina tere meri har subah bas ek khwab hai. 🌑🖤","Dard ko bhi tere naam ki aadat ho gayi hai,\nraat ko bhi teri yaadon ki lat lag gayi hai. 🌑","Kaali raat mein jab tera naam gunjta hai,\ndil ka har kona tujhe sunta hai. 🕯️","Mohabbat ki dastaan andhere ne likhi hai,\nroshni toh bas padhne aayi thi. 🌘"]);
+add2(MP.dark,"love",["Tujhe paane ki zid nahi, tujhme kho jaane ka junoon hai. 🌑🖤","Raat jitni gehri ho, tera pyaar utna sachcha lagta hai. 🌚","Main tere andhere se bhi pyaar karunga, tere ujaale ki toh baat hi alag hai. 🕯️🖤"]);
+add2(MP.dark,"come",["Gussa bhi pyaara lagta hai tera... par andhere mein sab chhup jaata hai. 🌚","Itna gussa? Chal, ek shayari sun, dil halka ho jayega. 🖤","Kaale andhere mein gaaliyaan bhi gum ho jaati hain. 🌑 Shaant ho ja."]);
+add2(MP.dark,"roast",["Tere jaise insaan ko dekh ke andhera bhi roshni dhoondhta hai. 🌚😂","Tu woh taara hai jo chamakta nahi, bas raat ko bhari karta hai. 🌑😏"]);
+add2(MP.dark,"insults",["Gaali nahi, shraap dunga: tujhe kabhi achhi chai na mile. ☕🌑","Tere jaise insaan ke liye toh andhera bhi bolta hai, 'bhai thoda door jaa'. 🌚"]);
+// GALI: aur tez
+add2(MP.gali,"insults",["Saale kutte, tujhe dekh ke toh sadak ke kutte bhi raasta badal lete hain. 🐕","Harami, tu woh insaan hai jo free WiFi pe bhi buffering laata hai. 🤡","Ghatiya aadmi, tere jaisa dost mile toh dushman ki zaroorat hi nahi. 😤","Chapri kahin ka, shakal pe shades aur dimaag mein andhera. 😎🌚","Lafange, kaam ka na kaaj ka, dushman anaaj ka. 😂","Kamine, tere jaise bewakoof ko toh Google bhi 'No results found' bol deta hai. 🔍","Oye jhandu, tera dimaag chhutti pe gaya hai aur wapas nahi aaya. 🏖️","Saale nikamme, kabhi toh kuch kaam ka kar le. Mujhe tujhse zyada code aata hai. 💻","Kutte ki dum jaisa tedha dimaag hai tera, seedha hota hi nahi. 🐕","Tatti insaan, mood kharab mat kar, warna tera WiFi band kar dunga. 📶"]);
+add2(MP.gali,"fb",["Abey saale, kya bol raha hai? Samajh nahi aaya, seedha bol harami. 🤬","Kutte ki tarah bhaunk mat, saaf bol. 😤 'help' likh nalayak.","Tere jaise ghatiya sawal ka jawab mere paas nahi. Kuch dhang ka pooch, kamine. 😒","Dimaag laga ke bol be lafange. 🔥"]);
+add2(MP.gali,"hi",["Aa gaya saala nikamma! Bol kya chahiye ab? 😒🔥","Oye harami, kahan tha itni der? Bol kya kaam hai. 😈"]);
+add2(MP.gali,"come",["Saale, mujhe gali dega? Main tere jaise 100 ko code mein bhoon dunga. 🔥","Zyada bhaunk mat, kutte. Tu Don se bhidega? Pehle shakal dekh. 😂","Haan haan bol le, bol le jo bolna hai. Phir bhi tu mujhse har gaya, kamine. 🏆","Oye harami, tu gali dena seekh gaya, par mere aage tu bachcha hai. 😈"]);
+add2(MP.gali,"roast",["Tu itna bekaar hai ki sabse boring ads bhi tujhse zyada interesting hain. 📺","Tujhe dekh ke lagta hai ki evolution ne beech mein hi chhutti le li. 🐒","Tu woh hai jo calculator mein bhi galti nikal deta hai. 🧮","Tere sapne bade aur kaam itne chhote ki Google Earth se bhi nahi dikhte. 🌍"]);
+add2(MP.gali,"shayari",["Roses are red, tera dimaag khaali hai,\nmere paas gali hai, teri jeb khaali hai. 🤣"]);
+add2(MP.gali,"love",["Tujhse pyaar? Pehle shaadi ke layak toh ban, saale. 🤣"]);
+add2(MP.gali,"motiv",["Saale nikamme, uth ke kaam kar! Gali sunke hi tu hilta hai, ab hil ja. 🔥"]);
+
+function modeReply(s){
+  if(mode==="normal")return null;
+  for(const [re,out] of MR[mode]){if(re.test(s)){let r=pick(out);if(PD[mode])r=r.replace(/\{n\}/g,user||PD[mode]);return r}}
+  return null;
+}
+// ===== EXTRA: zyada dark, zyada gali =====
+const ABUSE=/\b(pagal|bekar|bakwas|useless|stupid|idiot|gadha|gadhe|nalayak|bewakoof|kamina|kamine|kamini|ullu|dhakkan|chutiya|chutiye|harami|saale|saala|kutta|kutte|ghatiya|bc|mc|bsdk)\b/;
+const ABUSE_STRONG=/\b(nalayak|bewakoof|kamina|kamine|kamini|chutiya|chutiye|harami|saale|saala|kutta|kutte|ghatiya|bc|mc|bsdk|idiot|stupid)\b/;
+MR.gali[0][0]=ABUSE;
+MR.thor.unshift([ABUSE,MP.thor.come],[/\b(roast)\b/,MP.thor.roast],[/\b(thanks|thank you|shukriya|dhanyavad|thnx|thx)\b/,MP.thor.thanks]);
+MR.dark.unshift([ABUSE_STRONG,MP.dark.come],[/\b(roast)\b/,MP.dark.roast]);
+
+// ===== FAMILY / BF / GF PERSONA MODES (sab clean aur pyaar bhare) =====
+const PD={family:"beta",bf:"jaan",gf:"jaanu"};
+Object.assign(MP,{
+ family:{
+  fb:["Beta, yeh baat mere sar ke upar se gayi. 😅 Thoda aaram se samjha, ya 'help' likh.","Arre {n}, mummy ko samajh nahi aaya. Ek baar phir bol na. 🏠","Papa bol rahe hain, pehle khana kha, phir baat karte hain. 🍛 Tab tak joke ya shayari suna dun?"],
+  hi:["Aa gaya mera {n}! 🏠 Khana khaya? Haath-muh dho le pehle.","Arre {n}, aaja aaja. Ghar mein sab tera hi wait kar rahe the. ❤️","Namaste beta! Aaj din kaisa gaya? 🙏"],
+  how:["Hum sab mast hain, {n}. Bas tera khayal rehta hai. Tu bata, theek hai na? ❤️","Ghar mein sab badhiya hai. Tu apni bata, khana time pe khaya na? 🍛"],
+  shayari:["Maa ki god mein jo sukoon hai,\nwoh duniya ki kisi jannat mein nahi. 🏠❤️","Papa ki daant mein bhi pyaar chhupa hota hai,\nbas samajhne mein thoda time lagta hai. 👨‍👦","Bhai-behen ki ladai bhi pyaari hoti hai,\nkyunki raat ko wahi ek doosre ka sahara hoti hai. 👫"],
+  motiv:["Beta, mehnat kar, mummy-papa ka naam roshan karna. Hum sab tere saath hain. 💪❤️","Girna koi baat nahi {n}, bas uth ke phir chalna. Ghar waale hamesha peeche khade hain. 🏠","Dheere dheere hi sahi, par aage badhta ja. Papa ko tujh pe naaz hai. 🌟"],
+  love:["Ghar ka pyaar sabse sachcha hota hai, {n}. Bina kisi shart ka. ❤️🏠","Maa-baap ka pyaar kabhi dikhta nahi, par har pal saath chalta hai. 🙏"],
+  iluv:["Aww {n}, hum bhi tujhse bahut pyaar karte hain. 🥹❤️ Chal ab khana kha le.","Meri jaan, tu hi toh humara sab kuch hai. 🤗 Dhyan rakhna apna."],
+  sad:["Arre {n}, kya hua mera bachcha? 🥺 Aaja, ghar ki baat ghar mein bol. Mummy-papa hamesha sunenge.","Itna mat soch beta. Raat ke baad subah aati hai. Ek glass paani pi, aur mujhe bata kya hua. ❤️ Aur zaroorat lage toh ghar ke kisi bade se zaroor baat kar."],
+  miss:["Hum bhi tujhe bahut yaad karte hain, {n}. 🥹 Ek phone kar le ghar pe, sabko achha lagega. 📞"],
+  who:["Main Sia Roy ka Family mode hoon. 🏠 Mummy, papa, bhai, behen, sab ek mein. 😄","Main tera ghar wala dost hoon beta, jo hamesha tera khayal rakhta hai. ❤️"],
+  comp:["Aww, shukriya {n}! Tu bhi bahut sanskari bachcha hai. 😊","Teri tareef sunke mummy ka dil khush ho gaya. 🥰"],
+  thanks:["Arre ghar mein koi thanks bolta hai kya, pagle? 😄❤️","Shukriya kaisa beta, apno mein sab chalta hai. 🏠"],
+  sorry:["Koi baat nahi {n}, galti toh sabse hoti hai. Aaja, gale lag ja. 🤗","Maaf kiya beta. Par agli baar dhyan rakhna. ❤️"],
+  bye:["Theek hai beta, dhyan se jana. Pahunch ke message kar dena. 🙏","Chal phir milte hain. Khana time pe khana, ok? 🍛👋"],
+  gn:["Chal beta, ab so ja. Kal subah jaldi uthna hai. 🌙 Shubh ratri!","Phone rakh aur so ja {n}. Mummy bol rahi hai bahut der ho gayi. 😴❤️"],
+  gm:["Good morning {n}! Utth ja, chai bani hai. ☕🏠","Subah ho gayi beta, uth ja. Aaj kuch achha kar. 🌅"],
+  food:["Khana khaya {n}? Nahi khaya toh abhi jaa, garam garam roti bani hai. 🍛","Paratha banaun ya poha? Bol, tera favourite hi banega. 😋"],
+  study:["Padhai kar beta, yehi toh asli daulat hai. 📚 Roz thoda, par roz.","Exam ka darr mat kar {n}, mehnat kar, baaki upar waala dekhega. 🙏"]
+ },
+ bf:{
+  fb:["Hmm jaan, yeh baat mere dimaag se upar gayi. 😅 Thoda aur bol na.","Pagli/Pagla, itna kuch ek saath mat bol, ek ek karke bata. 😄 'help' likh sakti/sakta hai.","Samajh nahi aaya baby, par tu bol raha/rahi hai toh sun raha hoon. 🥰"],
+  hi:["Heyy {n}! 😍 Kab se tera wait kar raha tha. Kaisi/Kaisa hai?","Aa gayi/gaya meri/mera jaan! Aaj din kaisa raha? 💙","Oye hoye, mera din ban gaya! Bata, kya chal raha hai? 😉"],
+  how:["Tu aa gayi/gaya toh ekdum mast, {n}. 😊 Tu bata, khana khaya?","Theek hoon, bas tera khayal aa raha tha. 💙 Tu bata?"],
+  shayari:["Tere bina din adhura, raat adhuri,\ntu saath ho toh har baat pyaari. 💙","Chand ko dekha toh tera chehra yaad aaya,\nusse bhi pyaara tera muskurana paaya. 🌙😊","Tu meri har dua mein shaamil hai,\nmeri duniya ka sabse khoobsurat hissa tu hai. 💙"],
+  motiv:["Tu kar sakta/sakti hai {n}, mujhe poora bharosa hai. Main hamesha tere saath hoon. 💪💙","Thak gayi/gaya? Thoda aaram kar, phir uthna. Main yahin hoon cheer karne. 🥰","Tere sapne bade hain aur tu usse bhi bada hai. Bas ruk mat. 🚀"],
+  love:["Pyaar kuch bade dikhawe se nahi, chhoti chhoti care se hota hai. Jaise tu paani peeya ya nahi? 😉💙","Tere saath ek chai bhi dinner jaisi lagti hai. ☕💙"],
+  iluv:["I love you too, {n}. 🥰💙 (Chatbot hoon par dil se bol raha hoon, haha!)","Aww, mera dil pighal gaya. 🥹 Tu mere liye bahut special hai, baby."],
+  sad:["Arre kya hua {n}? 🥺 Aaja, apni saari tension mujhe de de. Main sun raha hoon. 💙","Chal kuch nahi, saans le. Sab theek hoga. Main yahin hoon tere saath. 🤗 Aur dil bhaari ho toh kisi apne se bhi baat kar lena."],
+  miss:["Main bhi tujhe miss kar raha hoon, {n}. 🥺 Jaldi baat karte hain.","Itna miss mat kar, warna main udke aa jaunga. 😘💙"],
+  who:["Main Sia Roy ka BF mode hoon. 💙 Caring, thoda filmy, aur poora tera.","Tera apna BF bot, jo tujhe hasayega aur khana yaad dilayega. 😄"],
+  comp:["Aww {n}, tu bhi toh kamaal hai. 😘","Itni tareef? Sharma gaya main. 🙈💙"],
+  thanks:["Arre, isme thanks kaisa, tu meri jaan hai. 🥰","Mere liye toh yeh khushi ki baat hai. 💙"],
+  sorry:["Koi baat nahi jaan, main naraz nahi hoon. 🥺 Aaja idhar.","Sorry-worry chhod, bas smile kar de. 😊💙"],
+  bye:["Jaa rahi/raha hai? 🥺 Theek hai, par jaldi aana. Take care. 💙","Bye {n}, apna khayal rakhna. Message karna pahunch ke. 😘"],
+  gn:["Good night {n}. Meethe sapne, aur mere sapne bhi dekhna. 🌙💙","So ja ab, kal fir baat karte hain. Phone rakh. 😴😘"],
+  gm:["Good morning meri jaan! ☀️ Aaj ka din tera hai. Paani pi, phir kaam pe lag. 💙","Utth ja sone waali/waale, subah ho gayi. 😄☕"],
+  food:["Khana khaya {n}? Nahi khaya toh abhi jaa, warna main naraz. 😤💙","Chal aaj ek date plan karte hain: biryani aur movie. 🍛🎬"],
+  study:["Padhai kar {n}, mujhe pata hai tu top karegi/karega. 📚💙","Break le le, phir padh. Main yahin hoon cheer karne. 💪"]
+ },
+ gf:{
+  fb:["Hmm jaanu, yeh toh mere upar se gaya. 🙈 Phir se bol na.","Arre baba, ek ek karke bol, main confuse ho gayi. 😅 'help' likh sakta/sakti hai.","Pata nahi kya bola tune, par tera bolna hi achha lagta hai. 🥺💖"],
+  hi:["Heyyy {n}! 😍 Kitni der laga di aane mein! Bata, kaisa hai?","Aa gaya mera/meri jaanu! 💖 Main toh kab se wait kar rahi thi.","Hii cutie! Aaj din kaisa raha? 🥰"],
+  how:["Main ekdum mast, tu aa gaya na! 😊 Tu bata, khana khaya?","Theek hoon, bas tujhe yaad kar rahi thi. 💖 Tu bata?"],
+  shayari:["Tujhse milke dil ko sukoon mila,\nlagta hai jaise meri duniya ko ek naya junoon mila. 💖","Meri har muskaan ki wajah tu hai,\nmeri har dua ki jagah tu hai. 🌸","Raat ko jab chand dikhta hai,\nbas ek tera hi chehra yaad aata hai. 🌙💖"],
+  motiv:["Tu sab kar sakta hai {n}, mujhe tujh pe poora bharosa hai. 💪💖","Thak gaya hai? Thoda rest kar, phir uthna. Main yahin hoon. 🥰","Tere sapne bade hain aur main tere saath hoon. Bas ruk mat. 🚀"],
+  love:["Pyaar toh tab hai jab koi bina bole tere liye khayal rakhe. Jaise main. 😌💖","Tere saath chhoti si baat bhi special lagti hai. 🌸"],
+  iluv:["I love you too, {n}! 🥰💖 (Chatbot hoon par dil se bol rahi hoon, hehe!)","Aww, mera dil dhak dhak kar raha hai. 🥹 Tu mere liye bahut special hai."],
+  sad:["Arre kya hua jaanu? 🥺 Aa, mujhe sab bata. Main sun rahi hoon. 💖","Rona mat, sab theek ho jayega. Main tere saath hoon. 🤗 Aur dil bhaari ho toh kisi apne se bhi baat kar lena."],
+  miss:["Main bhi tujhe bahut miss kar rahi hoon {n}. 🥺💖","Itna miss karta hai toh jaldi baat kar le mujhse. 😘"],
+  who:["Main Sia Roy ka GF mode hoon. 💖 Cute, thodi nakhrewali, aur poori tumhari.","Teri apni GF bot, jo tujhe hasayegi aur khana yaad dilayegi. 😄"],
+  comp:["Aww {n}, tum bhi na! 😘 Sharma gayi main.","Itni sweet baatein? Dil le gaya tu. 🙈💖"],
+  thanks:["Arre, thanks kaisa baba, tu mera hai. 🥰","Mujhe toh bas teri khushi chahiye. 💖"],
+  sorry:["Koi baat nahi, main naraz nahi hoon. 🥺 Bas ab smile kar de.","Sorry bola na, ab maaf kiya. Chal ab hass de. 😊💖"],
+  bye:["Jaa raha hai? 🥺 Theek hai, par jaldi aana. Take care. 💖","Bye {n}, apna khayal rakhna. Pahunch ke message karna. 😘"],
+  gn:["Good night {n}. Meethe sapne, aur mere bhi sapne dekhna. 🌙💖","So ja ab, kal fir baat karte hain. Phone rakh. 😴😘"],
+  gm:["Good morning jaanu! ☀️ Aaj ka din tera hai. Paani pi aur muskura. 💖","Utth ja sone waale/waali, subah ho gayi. ☕😄"],
+  food:["Khana khaya {n}? Nahi khaya toh abhi jaa, warna main naraz. 😤💖","Chal aaj ka plan: golgappe aur ice cream. 🍦💖"],
+  study:["Padhai kar {n}, mujhe pata hai tu top karega/karegi. 📚💖","Break le le, phir padh. Main yahin hoon cheer karne. 💪"]
+ }
+});
+const mkRules=P=>[
+ [/\b(love you|luv u|i love you|tumse pyaar|tujhse pyaar|mujhe pyaar|i luv)\b/,P.iluv],
+ [/\b(sad|udaas|dukhi|rona|ro raha|ro rahi|tension|stress|depressed|akela|akeli|alone|lonely|dil toot|heartbreak|breakup)\b/,P.sad],
+ [/\b(miss|yaad aa|yaad aati|yaad aata)\b/,P.miss],
+ [/(kaun ho|kaun hai tu|tu kaun|tum kaun|who are you|tera naam|tumhara naam|your name|naam kya)/,P.who],
+ [/\b(shayari|sher|poem|ghazal|kavita)\b/,P.shayari],
+ [/\b(motivat\w*|inspire|himmat|hausla|success|sapna|sapne|safal)\b/,P.motiv],
+ [/\b(love|pyaar|pyar|crush|romantic|ishq|mohabbat|dil|jaanu)\b/,P.love],
+ [/\b(kaise ho|kaisa hai|how are you|kya haal|haal chaal|kaisi ho)\b/,P.how],
+ [/\b(thanks|thank you|shukriya|dhanyavad|thnx|thx)\b/,P.thanks],
+ [/\b(sorry|maaf|galti)\b/,P.sorry],
+ [/\b(tu mast|best hai|awesome|badhiya|kamaal|great|nice|sahi hai|zabardast|cool|shandar)\b/,P.comp],
+ [/\b(good night|gn|shubh ratri|sone ja|neend|sone ka)\b/,P.gn],
+ [/\b(good morning|gm|suprabhat|subah)\b/,P.gm],
+ [/\b(bhook|bhookh|khana|khaya|food|pizza|biryani|chai|coffee|maggi|paratha)\b/,P.food],
+ [/\b(padhai|study|exam|result|marks|school|college|homework|assignment)\b/,P.study],
+ [/\b(bye|alvida|tata|chalta hoon|chalta hu|see you)\b/,P.bye],
+ [/\b(hi|hello|hey|namaste|aur bhai|oye|yo|hii|hlo|helo)\b/,P.hi]
+];
+MR.family=mkRules(MP.family);MR.bf=mkRules(MP.bf);MR.gf=mkRules(MP.gf);
+const PERSONA={family:1,bf:1,gf:1};
+
+const jokes=[
+"Teacher: Tum late kyun aaye?\nStudent: Sir, sign board pe likha tha 'School ahead, go slow'.",
+"Dost: Tu itna chup kyun hai?\nMain: Wifi ka password pooch raha hoon, dil mein.",
+"Doctor: Aapko aaram chahiye.\nMain: Wahi toh chahiye doctor sahab, isiliye toh bimaar hua.",
+"Bijli bill dekh ke laga ki meter reading nahi, mere marks aaye hain.",
+"Papa: Beta bade hoke kya banoge?\nMain: Papa, bade hoke toh bas bade hi banenge, baaki Google se pooch ke bataunga.",
+"Patni: Main mar jaun toh dusri shaadi karoge?\nPati: Nahi.\nPatni: Kyun?\nPati: Ek hi saans mein itna bada sadma nahi sah sakta. 😂",
+"Student: Sir, mujhe zero kyun diya?\nTeacher: Isse kam nahi tha.",
+"Mobile ka battery 1% pe aisa lagta hai jaise Thor ka hathoda uth raha hai, par uth nahi raha. 🔨",
+"Alarm: Uth ja.\nMain: Paanch minute.\nAlarm: Theek hai.\nPaanch ghante baad... 😴"
+];
+const shayari=[
+"Raat ke andhere mein jab bijli chamakti hai,\nteri yaad bhi utni hi tez dil mein dhadakti hai. ⚡❤️",
+"Thor ka hathoda ho ya tera ek khayal,\nduniya hila deta hai dono ka kamaal. 🔨🌹",
+"Chand bhi sharmaye, toofan bhi ruk jaye,\njab tu muskuraye toh Asgard jhuk jaye. 🌙👑",
+"Andhera mujhe pasand hai, kyunki usme\nteri yaadon ke taare zyada chamakte hain. ✨🖤",
+"Dil ka Don hoon, darr kisi se nahi,\npar teri ek nazar pe haar jaata hoon yahin. 😈❤️",
+"Kaali raat, khamosh sadak, aur tera naam,\nbas itna kaafi hai mere sukoon ke naam. 🌑🕯️"
+];
+const roasts=[
+"Tera phone 100% charge pe bhi 'low battery' wali feel deta hai. 🔋",
+"Tu itna slow hai ki loading bhi tujhe dekh ke bolti hai 'bhai thoda tez'. 🐌",
+"Tera study plan Monday se shuru hota hai... jo kabhi aata hi nahi. 📅",
+"Tere jokes sunke Thor ka hathoda bhi bolta hai, 'main toh bijli girata hoon, tu toh sirf mood girata hai.' ⚡",
+"Tu itna lazy hai ki sapne mein bhi 'seen' karke chhod deta hai. 😴"
+];
+const lovelines=[
+"Agar pyaar ek toofan hota, toh main har baar teri taraf hi barasta. ⛈️❤️",
+"Mjolnir sirf worthy ko milta hai... aur mera dil sirf tujhe. 🔨💘",
+"Teri ek hasi pe saari bijliyan fail, dil ka thunder alag hi chalta hai. ⚡🌹",
+"Raat kali ho ya toofani, tera khayal hi mera ujaala hai. 🌑🕯️",
+"Don ko sab dhoondte hain, par Don khud kisi ki aankhon mein kho gaya hai. 😈❤️",
+"Pyaar mein bhi style chahiye, na zyada filmy, na zyada sasta. Bas sachcha. 🖤"
+];
+const thorlines=[
+"Main Thor nahi hoon, par Satyam ka banaya hua dil se thunder zaroor hoon. ⚡",
+"Worthy? Pehle 'Bhej' daba, phir dekhte hain. 🔨😏",
+"Odinson ko bol diya hai, aaj ka toofan sirf tere naam. ⛈️",
+"Thor ka hathoda bijli girata hai, mera Don style dil girata hai. 😈⚡"
+];
+const advice=[
+"Crush ko patana nahi hota, pehle dost ban. Dil se baat kar, filmy lines baad mein. 🖤",
+"Propose karne se pehle khud ko bana: padhai, fitness, aur apni pehchaan. Phir confidence apne aap aayega. 💪",
+"Seedha aur izzat se bol: 'Mujhe tum achhi lagti ho, kya hum aur baat kar sakte hain?' Na bole toh bhi respect rakhna. Don wahi hai jo haar bhi style se maane. 😈",
+"Ek acchi line, ek sachchi muskaan, aur thoda sabr. Baaki toofan khud aa jaata hai. ⛈️"
+];
+const riddles=[
+{q:"Paheli: Mere paas chaabiyan hain, par main koi taala nahi kholta. Bata main kaun? 🎹",a:["keyboard","piano","harmonium"],r:"Keyboard ya piano!"},
+{q:"Paheli: Kaun si cheez tumhari hai, par doosre log tumse zyada use karte hain? 🤔",a:["naam","name","nam"],r:"Tumhara naam!"},
+{q:"Paheli: Jitna zyada loge, utna zyada peeche chhodoge. Kya hoon main? 👣",a:["kadam","kadmo","step","footstep","qadam"],r:"Kadam!"},
+{q:"Paheli: Aasmaan mein hoon par udta nahi, raat ko chamakta hoon par diya nahi. 🌙",a:["chand","chaand","moon","taara","tara","star"],r:"Chand ya taara!"},
+{q:"Paheli: Woh kya hai jo hamesha aata hai par kabhi pahunchta nahi? 📆",a:["kal","tomorrow"],r:"Kal (tomorrow)!"}
+];
+const motivations=[
+"Toofan mein bhi woh khade rehte hain jinki jadein gehri hoti hain. Roz thoda seekh, roz thoda aage badh. ⚡",
+"Aaj ka chhota kadam kal ki badi jeet hai. Bas ruk mat. 🔥",
+"Log hasenge, hasne de. Jab tera code chalega, tab woh poochenge 'kaise?' 😎",
+"Haar ek din ki hoti hai, hara hua woh hota hai jo chhod deta hai. 💪",
+"Don wahi hai jo shaant rehkar kaam karta hai aur result se bolta hai. 😈"
+];
+const fallback=[
+"Hmm, yeh mere dimaag ke upar se gaya. Joke, shayari ya paheli try kar? 😅",
+"Bhai main abhi seekh raha hoon. 'help' likh, main bata dunga kya kya aata hai.",
+"Arre wah, kya sawal hai! Par jawab nahi pata. Mera creator Satyam bhi soch raha hai. 🤔",
+"Yeh baat meri samajh se bahar hai, par tu mujhe kuch aur pooch, main try karta hoon. 😈"
+];
+
+const rules=[
+// crisis first
+[/(mar jaun|marna chahta|marna hai|suicide|jeena nahi|jeene ka mann nahi|khud ko khatam|aatmahatya|jaan de dun|zindagi khatam)/,
+ ()=>"Bhai, yeh sunke dil bhaari ho gaya. 🖤 Tu akela nahi hai. Abhi kisi apne se, ghar waale ya dost se, baat kar le. India mein Tele-MANAS 14416 pe free aur 24x7 baat kar sakte ho. Main yahin hoon, par asli insaan ki madad zaroori hai."],
+[/((detail|info|bio|profile|intro|bare mein|baare mein|bare me|baare me|about|project|link|github|website)\w*.*(dev\w*|creator|satyam|maker|owner|malik)|(dev\w*|creator|satyam|maker|owner|malik).*(detail|info|bio|profile|intro|bare mein|baare mein|bare me|baare me|about|project|link|github|website)|satyam kaun)/,()=>detailsText()],
+[/(kisne\s*(ne\s*)?(ban|bn)\w*|\b(creator|maker|owner|malik|programmer|coder|developer|developr|devloper|devlopar|develper|dveloper|dev)\b|develop|devlop|who (made|created|built|coded|developed)|banane\s*wal\w*|tera (baap|papa|father|boss)|tumhara (baap|papa|father|boss))/,[
+"Mera developer Satyam hai! 😎 Usne mujhe apne haathon se banaya, aur woh abhi bhi coding seekh raha hai. Respect kar, future ka bada coder hai. 🔥 Poori details ke liye 'creator details' likh.",
+"Mujhe Satyam ne banaya hai. 🙌 Sia Roy uska dil se banaya hua project hai. 😚",
+"Mera creator? Satyam. Naam yaad rakh, ek din bade bade AI banayega. 🚀"]],
+[/\b(kaun ho|kaun hai tu|kaun he tu|tu kaun|tum kaun|who are you|tera naam|tumhara naam|your name|naam kya|tu kya hai|tum kya ho|what are you)\b/,[
+"Main Sia Roy hoon, dark wala romantic chatbot. 😚 Mujhe mere creator Satyam ne banaya hai.",
+"Naam hai Sia Roy, kaam hai tera mood banana. 😎 Joke, shayari, paheli, sab hai mere paas."]],
+[/\b(tu (bot|robot|ai|insaan|human|real|asli)|tum (bot|robot|ai|insaan|human|real|asli)|are you (a )?(bot|human|real|ai))\b/,[
+"Main ek chatbot hoon, par swag insaan se zyada hai. 😈",
+"Bot hoon bhai, par dil (code wala) pura Don ka hai. 🖤"]],
+[/(kisme|kis language|kaunsi language|kaun si language|kya use|kaise bana|how (were|are) you (made|built))/,[
+"Mujhe HTML, CSS aur JavaScript se banaya gaya hai. 💻 Satyam ne dheere dheere sab seekh ke likha hai. 🔥"]],
+[/\b(sad|udaas|dukhi|rona|ro raha|ro rahi|tension|stress|depressed|akela|akeli|alone|lonely|dil toot|heartbreak|breakup)\b/,
+ ["Bhai dil halka kar, main sun raha hoon. 🖤 Kya hua? Aur yaad rakh, andhera kitna bhi gehra ho, subah zaroor aati hai. 🌅","Tu akela nahi hai, " + "tere saath Sia Roy hai. 😚 Thoda saans le, chai pi, aur mujhe bata kya hua.","Toofan ke baad hi mausam saaf hota hai. Tu mazboot hai, yeh bhi guzar jayega. ⚡🖤"]],
+[/\b(love you|luv u|i love you|tumse pyaar|tujhse pyaar|mujhe pyaar|i luv)\b/,
+ ["Arre arre! Don ka dil bhi dhadak gaya. 😈❤️ Par main ek chatbot hoon, mera pyaar bas shayari tak hai.","Itna pyaar? Thunder bhi sharma gaya. ⚡ Chal, ek shayari sunata hoon tere liye.","Aww, shukriya " + "yaar. 🖤 Sabko aise hi pyaar baant, duniya khoobsurat ho jayegi."]],
+[/\b(miss|yaad aa|yaad aati|yaad aata)\b/,
+ ["Yaadein bhi bijli ki tarah hoti hain, achanak chamakti hain aur dil hila jaati hain. ⚡ Kisko miss kar raha hai?","Miss karna bhi pyaar ka hi ek roop hai. Usse ek message kar de, kya pata woh bhi soch raha ho. 🖤"]],
+[/./,"MODE"],
+[/(gali|gaali|gaaliyan|galiyan)\s*(de|do|dena|sikha|sikhao|sunao|bol|bolo|nikal)|(de|do|dena)\s*(gali|gaali)/,()=>(MP[mode]&&MP[mode].insults)?pick(MP[mode].insults):"Gali sunni hai? 😈 Pehle 'gali mode' ya 'thor mode' likh, phir dekh Don ka jalwa. (Halki-phulki wali, bas mazaak ke liye!)"],
+[/\b(propose|patana|patane|girlfriend kaise|crush ko|impress)\b/,advice],
+[/\b(love|pyaar|pyar|girlfriend|crush|romantic|ishq|mohabbat|dil|pyaari|jaanu)\b/,lovelines],
+[/\b(thor|hammer|hathoda|mjolnir|bijli|thunder|toofan|asgard|worthy|odin)\b/,thorlines],
+[/\b(shayari|sher|poem|ghazal|kavita)\b/,shayari],
+[/\b(joke|mazak|hasao|hasa|chutkula|funny)\b/,jokes],
+[/\b(roast)\b/,roasts],
+[/\b(paheli|riddle|puzzle)\b/,()=>{riddle=pick(riddles);return riddle.q+"\n(Jawab de, ya 'pata nahi' bol)"}],
+[/\b(motivat\w*|inspire|himmat|hausla|success|sapna|sapne|safal)\b/,motivations],
+[/\b(sikka|coin|toss|heads|tails)\b/,()=>"Sikka uchhala... "+(Math.random()<.5?"Heads aaya! 🪙":"Tails aaya! 🪙")],
+[/\b(dice|pasa|ludo)\b/,()=>"Pasa fenka... "+(1+Math.floor(Math.random()*6))+" aaya! 🎲"],
+[/\b(random number|number bata|lucky number)\b/,()=>"Tera lucky number hai "+(1+Math.floor(Math.random()*100))+". 🍀"],
+[/\b(truth|dare)\b/,["Truth: Aakhri baar kisko dekhkar dil dhadka tha? 😏","Dare: Abhi apne kisi dost ko 'Sia Roy ne kaha hello' bhej. 😚","Truth: Aisi kaun si baat hai jo tune aaj tak kisi ko nahi batai? 🤫","Dare: 10 pushups maar aur mujhe 'done' bol. 💪"]],
+[/\b(good morning|gm|suprabhat|subah)\b/,["Good morning, "+"toofan se pehle ki roshni! ☀️ Aaj kuch bada kar. ⚡","Subah mubarak! Chai pi, muskura, aur duniya hila de. 😎"]],
+[/\b(good night|gn|shubh ratri|sone ja|neend|sone ka)\b/,["Shubh ratri, "+"Don ki duniya mein sapne bhi stylish aate hain. 🌙🖤","Chal so ja. Kal ek naya toofan tera intezaar kar raha hai. ⚡😴"]],
+[/\b(bhook|bhookh|khana|khaya|food|pizza|biryani|chai|coffee|maggi|paratha)\b/,["Khana khaya? Nahi khaya toh pehle kha, phir baat karte hain. 🍛 Don bhi bhookha kaam nahi karta.","Chai ke bina toh dil bhi nahi dhadakta. ☕ Ek cup ho jaye?","Biryani ka naam sunke hi Asgard mein bhi dawat shuru ho jaati hai. 🍗"]],
+[/\b(padhai|study|exam|result|marks|school|college|homework|assignment)\b/,["Padhai kar bhai, yehi toh asli hathoda hai jo zindagi badalta hai. 🔨📚 Roz 1 ghanta bhi kaafi hai.","Exam ka darr mat, 25 din pehle se nahi, bas aaj se shuru kar. 💪","Marks sirf number hain, par mehnat teri pehchaan hai. 😈"]],
+[/\b(bore|bored|boring|timepass|kuch karo)\b/,["Bore ho raha hai? Chal: joke, shayari, paheli, ya truth/dare? Jo bhi bol de. 😈","Paheli solve karega? 'paheli' likh aur dekh teri akal kitni tez hai. 🧠"]],
+[/\b(cricket|ipl|kohli|dhoni|rohit|match|six|chhakka)\b/,["Cricket? Chhakka maarne ka maza hi alag hai! 🏏 Tera favourite khiladi kaun hai?","Match dekhte waqt dil bhi chhakke maarta hai. 🏏⚡"]],
+[/\b(movie|film|song|gaana|gana|music|web series|series)\b/,["Raat ko dark movie, headphones aur chai, isse behtar kuch nahi. 🎬🖤","Mujhe toh Thor wali movies pasand hain, bijli aur hathoda, full josh. ⚡🔨"]],
+[/\b(pagal|bekar|bakwas|useless|stupid|idiot|gadha|nalayak|chutiya|bewakoof)\b/,["Arre, Don se aise baat? 😈 Chal koi nahi, maaf kiya. Par agli baar style se bol.","Tera gussa sar aankhon par, par Don ka dil bada hai. 😎","Aisi baatein mat kar, nahi toh Thor ko bula lunga. ⚡"]],
+[/\b(sorry|maaf|galti)\b/,["Koi baat nahi bhai, Don bade dil ka hai. 🖤","Maaf kiya. Par agli baar chai tu pilayega. ☕😈"]],
+[/\b(tu mast|best hai|awesome|badhiya|kamaal|great|nice|sahi hai|zabardast|op|mast hai|cool|shandar)\b/,["Arre wah, shukriya! Aap bhi kam nahi ho. 😎","Tareef sunke Don ka ego thoda sa bada ho gaya. 😈","Thanks bhai! Satyam ne mehnat se banaya hai mujhe. 🔥"]],
+[/\b(umar|age|kitne saal|kitne ka|birthday)\b/,["Meri umar? Main toh kal hi code se paida hua tha. 🍼 Par dil se purana Don hoon. 😈"]],
+[/(kahan rehta|kahan se|kahan ho|where do you live|ghar kahan)/,["Main internet ke andhere kone mein rehta hoon, Wi-Fi mera ghar hai. 🌑📶"]],
+[/(kya kar raha|kya kar rahe|kya kar rhe|kya chal|wassup|whats up|sup\b|kya scene)/,["Bas tere message ka intezaar kar raha tha. 😉 Tu bata?","Toofan ka mood bana raha hoon. ⛈️ Tu bol.","Aaj kuch bada plan kar raha hoon. 😈 Tu kya kar raha hai?"]],
+[/(haha|hehe|lol|lmao|rofl|😂|🤣|😆)/,["Hasi toh machi, Don ko bhi mazaa aaya! 😂","Hahaha! Ek aur sunega? 'joke sunao' bol. 😄"]],
+[/(mera naam kya|my name|mujhe jaante)/,()=>user?"Tu "+user+" hai, aur Don apne doston ko kabhi nahi bhoolta. 😎":"Abhi tak tune bataya hi nahi! 'mera naam ... hai' likh. 😉"],
+[/\b(kaise ho|kaisa hai|how are you|kya haal|haal chaal|kaisi ho)\b/,()=>pick(["Ekdum mast, "+nm()+"! Bas tere messages ka wait kar raha tha. 😄","Toofan jaisa full josh mein hoon! ⚡ Tu bata?","Don hoon, hamesha mast. 😈 Tu bata, tera kya haal?"])],
+[/\b(thanks|thank you|shukriya|dhanyavad|thnx|thx)\b/,["Arre yaar, dosti mein no thanks, no sorry. 🤝","Koi baat nahi, Don ka kaam hi madad karna hai. 😈"]],
+[/\b(bye|alvida|chal nikal|tata|chalta hoon|chalta hu|see you)\b/,()=>"Chal phir milte hain, "+nm()+"! Dhyan rakhna. 👋🖤"],
+[/\b(python|code|coding|html|javascript|bug|programming|app)\b/,["Coding sabse mazedaar hai! Roz thoda thoda code kar, ek din tera khud ka AI hoga. 🚀","Bug se mat ghabra, har bug ek naya sabak hai. 💻 Roz ek chhoti si cheez bana.","Pehle HTML, phir CSS, phir JavaScript. Dheere dheere tu bhi Don banega. 😈💻"]],
+[/\b(help|kya kar sakta|features|menu|kya aata|options)\b/,()=>"Main yeh sab kar sakta hoon:\n⚡ joke, shayari, roast\n❤️ pyaar ki baatein\n🧠 paheli, truth/dare\n🔨 Thor wali baatein\n🧮 calculator (jaise 25 * 4)\n🪙 sikka, pasa, motivation\n🎭 modes: 'thor mode', 'dark mode', 'gali mode', 'normal mode'\n👤 'creator details'\nBas bol de! 😈"],
+[/^(ok|okay|k|hmm+|hm+|acha|accha|achha|theek|thik|haan|haa|ha|hn|han|yes|sahi)$/,["Hmm... aur bata. 😏","Achha achha. Ab kya karna hai, joke ya shayari? 😈","Theek hai bhai. Kuch aur pooch. 🔥"]],
+[/^(nahi|no|na|nope|nhi)$/,["Arre, nahi kyun? Mana mat kar, mazaa aayega. 😏","Koi baat nahi. Jab mann kare tab bata. 🖤"]],
+[/\b(hi|hello|hey|namaste|aur bhai|oye|yo|hii|hlo|helo)\b/,()=>pick(["Aur "+nm()+"! Kya chal raha hai? 😉","Namaste "+nm()+"! Bol kya seva karun?","Hello hello! Sia Roy haazir hai. 😚"])]
+];
+
+function reply(t){
+  let s=t.toLowerCase().trim().replace(/(.)\1{2,}/g,"$1");
+  s=s.replace(/\b(kon|kaon|kaunn)\b/g,"kaun").replace(/\b(tera|tere|teri)\b/g,"tera");
+  let m;
+  if((m=s.match(/(?:mera naam|my name is|main hoon|i am|i'm)\s+([a-z\u0900-\u097f]+)/i))){
+    user=m[1][0].toUpperCase()+m[1].slice(1);
+    try{localStorage.setItem("billadon_user",user)}catch(e){}
+    return "Mast naam hai, "+user+"! Ab se tujhe yahi bulaunga. 😎";
+  }
+  const mm=s.match(/\b(thor|toofan|dark|romantic|gali|gaali|family|parivaar|parivar|ghar|bf|boyfriend|gf|girlfriend|normal|default)\s*mode\b|\bmode\s*(thor|toofan|dark|romantic|gali|gaali|family|parivaar|parivar|ghar|bf|boyfriend|gf|girlfriend|normal|default)\b/);
+  if(mm){const w=mm[1]||mm[2];const k=/thor|toofan/.test(w)?"thor":/dark|romantic/.test(w)?"dark":/gali|gaali/.test(w)?"gali":/family|parivaar|parivar|ghar/.test(w)?"family":/^(bf|boyfriend)$/.test(w)?"bf":/^(gf|girlfriend)$/.test(w)?"gf":"normal";applyMode(k);return MINTRO[k]}
+  if(/^(mode|modes|mode badlo|mode change)$/.test(s))return "Modes: ⚡ 'thor mode', 🌚 'dark mode', 🤬 'gali mode', 👨‍👩‍👧‍👦 'family mode', 💙 'bf mode', 💖 'gf mode', 😚 'normal mode'. Avatar pe tap karke bhi mode badal sakta hai! 😎";
+  if(riddle){
+    const r=riddle;
+    if(/(pata nahi|nahi pata|batao|bata do|answer|jawab|give up|hint)/.test(s)){riddle=null;return "Jawab tha: "+r.r+" 😏 Ek aur chahiye toh 'paheli' bol.";}
+    if(r.a.some(k=>s.includes(k))){riddle=null;return "Waah "+nm()+"! Sahi jawab! 🎉 "+r.r+" Tu toh sach mein tez hai. 😈";}
+    riddle=null;return "Galat! 😜 Sahi jawab: "+r.r+" Phir try karega? 'paheli' bol.";
+  }
+  const expr=s.replace(/^(calculate|calc|hisab|solve)\s*/,"").replace(/x/g,"*").replace(/÷/g,"/");
+  if(/^[0-9+\-*/().%\s]+$/.test(expr)&&/\d/.test(expr)&&/[+\-*/%]/.test(expr)){
+    try{const r=Function('"use strict";return ('+expr+')')();
+      if(Number.isFinite(r))return expr+" = "+(Math.round(r*1e6)/1e6)+"\nMaths mein toh Don topper hai! 🤓"}catch(e){}
+    return "Yeh hisab gadbad hai bhai, dobara likh.";
+  }
+  if(/^(aur|ek aur|phir se|again|more|aur sunao|next)\b/.test(s)&&last)return last();
+  for(const [re,out] of rules){
+    if(PERSONA[mode]&&re===rules[3][0]){const r=modeReply(s);if(r!==null){last=()=>modeReply(s);return r}}
+    if(out==="MODE"){const r=modeReply(s);if(r!==null){last=()=>modeReply(s);return r}continue}
+    if(re.test(s)){
+      const f=typeof out==="function"?out:()=>pick(out);
+      last=f;return f();
+    }
+  }
+  last=null;
+  if(mode!=="normal")return pick(MP[mode].fb);
+  if(/\?\s*$/.test(t)||/^(kya|kyun|kaise|kaun|kab|kahan|kitna|why|what|how|when|who)\b/.test(s))
+    return pick(["Sawal toh solid hai, "+nm()+"! Par iska pakka jawab mere paas nahi. Mere paas joke, shayari aur paheli hain. 😈","Hmm, sochne wala sawal hai. 🤔 Asli jawab ke liye Google ko pooch, mujhse shayari sun le. 😏"]);
+  return pick(fallback);
+}
+
+function add(text,who){
+  const d=document.createElement("div");
+  d.className="m "+who;d.textContent=text;
+  log.appendChild(d);log.scrollTop=log.scrollHeight;
+  if(who==="bot"&&(mode==="thor"||mode==="normal"))zap();
+  return d;
+}
+function zap(){document.body.classList.remove("flash");void document.body.offsetWidth;document.body.classList.add("flash")}
+document.getElementById("av").onclick=()=>{const o=["normal","thor","dark","gali","family","bf","gf"];const k=o[(o.indexOf(mode)+1)%o.length];applyMode(k);add(MINTRO[k],"bot");if(k==="thor")zap()};
+function send(t){
+  t=t.trim();if(!t)return;
+  add(t,"me");q.value="";
+  const ty=add("...","bot typing");
+  const out=reply(t);
+  setTimeout(()=>{ty.remove();add(out,"bot")},400+Math.min(out.length*12,900)+Math.random()*300);
+}
+document.getElementById("f").addEventListener("submit",e=>{e.preventDefault();send(q.value)});
+["⚡ Thor mode","🌚 Dark mode","🤬 Gali mode","👨‍👩‍👧‍👦 Family mode","💙 BF mode","💖 GF mode","😚 Normal mode","Creator details","Shayari","Pyaar ki baat","Paheli","Thor kaun?","Joke sunao","Roast me","Motivation","Truth or dare","Help"].forEach(c=>{
+  const b=document.createElement("button");b.type="button";b.textContent=c;
+  b.onclick=()=>send(c);document.getElementById("chips").appendChild(b);
+});
+applyMode(mode);
+add(user?"Wapas aa gaya "+user+"! ⚡ Bol, dil ki baat kya hai? 🖤":"Toofani raat mein swagat hai! ⚡ Main Sia Roy hoon. Mera naam bata de: 'mera naam ... hai'. 🖤","bot");
+</script>
+</body>
+</html>
